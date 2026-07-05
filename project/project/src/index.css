@@ -1,0 +1,331 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Palatino Linotype', 'Book Antiqua', 'Palatino', 'Georgia', serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background-color: #0c0804;
+    color: #e8d8b8;
+    overflow-x: hidden;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CHAMBER BACKGROUND — stone walls + warm vignette
+   ═══════════════════════════════════════════════════════════════ */
+.chamber-bg {
+  background-color: #0c0804;
+  background-image:
+    /* Hard vignette corners */
+    radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(0,0,0,0.65) 100%),
+    /* Left candle warm glow on wall */
+    radial-gradient(ellipse at 4% 18%, rgba(220,120,25,0.22) 0%, rgba(180,80,15,0.08) 30%, transparent 55%),
+    /* Right candle warm glow on wall */
+    radial-gradient(ellipse at 96% 18%, rgba(210,110,20,0.18) 0%, rgba(170,75,12,0.06) 30%, transparent 55%),
+    /* Stone block horizontal lines (blurred) */
+    repeating-linear-gradient(
+      180deg,
+      transparent 0px, transparent 54px,
+      rgba(0,0,0,0.12) 54px, rgba(0,0,0,0.12) 57px
+    ),
+    /* Stone block vertical lines (offset rows) */
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px, transparent 74px,
+      rgba(0,0,0,0.09) 74px, rgba(0,0,0,0.09) 77px
+    ),
+    /* Warm undertone */
+    linear-gradient(180deg, #130d08 0%, #0c0804 50%, #090603 100%);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TABLE SURFACE — dark polished wood grain
+   ═══════════════════════════════════════════════════════════════ */
+.wood-surface {
+  background-color: #1e1008;
+  background-image:
+    /* Fine grain lines */
+    repeating-linear-gradient(
+      90.4deg,
+      transparent 0px, transparent 9px,
+      rgba(0,0,0,0.05) 9px, rgba(0,0,0,0.05) 10px
+    ),
+    /* Medium grain waves */
+    repeating-linear-gradient(
+      88.8deg,
+      transparent 0px, transparent 28px,
+      rgba(60,30,10,0.07) 28px, rgba(60,30,10,0.07) 29px
+    ),
+    /* Coarse grain */
+    repeating-linear-gradient(
+      91.5deg,
+      transparent 0px, transparent 65px,
+      rgba(0,0,0,0.04) 65px, rgba(0,0,0,0.04) 66px
+    ),
+    /* Depth gradient (slightly lighter toward viewer) */
+    linear-gradient(180deg,
+      #2c1a0a 0%,
+      #201208 25%,
+      #261608 50%,
+      #1e1007 75%,
+      #1a0e06 100%
+    );
+  /* Polished surface: candle glow reflections */
+  box-shadow:
+    inset 0 1px 0 rgba(200,150,60,0.12),
+    inset 0 2px 8px rgba(200,140,50,0.06);
+}
+
+/* Table front fascia — gives physical depth */
+.wood-fascia {
+  background: linear-gradient(180deg, #1a0c05 0%, #0e0703 60%, #090502 100%);
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.85),
+    0 16px 40px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(100,55,15,0.2);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VELVET RUNNER — deep purple with pile texture
+   ═══════════════════════════════════════════════════════════════ */
+.velvet-runner {
+  background-color: #281050;
+  background-image:
+    /* Velvet pile diagonal shimmer */
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px,
+      transparent 1px, transparent 4px
+    ),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px,
+      transparent 1px, transparent 5px
+    ),
+    /* Main velvet tone */
+    linear-gradient(160deg,
+      #180630 0%,
+      #2a1058 22%,
+      #3d1870 42%,
+      #4a2285 50%,
+      #3d1870 58%,
+      #2a1058 78%,
+      #180630 100%
+    );
+  box-shadow:
+    /* Runner sits on top of table */
+    0 3px 12px rgba(0,0,0,0.6),
+    0 0 30px rgba(80,20,160,0.20),
+    /* Pile edge shadows */
+    inset 0 2px 6px rgba(100,50,200,0.18),
+    inset 0 -2px 6px rgba(0,0,0,0.45);
+}
+
+/* Runner top/bottom edges (folded velvet) */
+.velvet-edge {
+  background: linear-gradient(180deg,
+    rgba(80,35,150,0.5) 0%,
+    rgba(50,20,100,0.3) 100%
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CARD PHYSICAL SHADOW — simulates candle light from top-left
+   ═══════════════════════════════════════════════════════════════ */
+.card-physical {
+  box-shadow:
+    -4px 8px 20px rgba(0,0,0,0.88),
+    -2px 4px 40px rgba(0,0,0,0.55),
+    1px 0 0 rgba(200,150,50,0.18),
+    0 0 0 1px rgba(180,130,40,0.45);
+  transition: box-shadow 0.3s ease;
+}
+.card-physical:hover {
+  box-shadow:
+    -5px 10px 24px rgba(0,0,0,0.9),
+    -2px 5px 48px rgba(0,0,0,0.6),
+    1px 0 0 rgba(200,160,60,0.3),
+    0 0 0 1px rgba(200,150,50,0.65),
+    0 0 14px rgba(200,150,50,0.18);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GOLD BORDER TRIM (reading panel, spread selector)
+   ═══════════════════════════════════════════════════════════════ */
+.gold-panel {
+  background: linear-gradient(160deg, rgba(22,13,7,0.97) 0%, rgba(14,8,4,0.98) 100%);
+  border: 1px solid rgba(180,130,40,0.28);
+  box-shadow:
+    0 0 0 1px rgba(60,35,8,0.35),
+    0 20px 60px rgba(0,0,0,0.7),
+    inset 0 1px 0 rgba(180,130,40,0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GOLD SHIMMER TEXT
+   ═══════════════════════════════════════════════════════════════ */
+.gold-text {
+  background: linear-gradient(90deg,
+    #8c6820 0%, #c8980c 25%, #f0d060 50%, #c8980c 75%, #8c6820 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3.5s linear infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CANDLE ELEMENTS
+   ═══════════════════════════════════════════════════════════════ */
+.candle-flame-inner {
+  background: radial-gradient(ellipse at 50% 85%,
+    #fffde0 0%, #ffe870 18%, #ffb020 45%, #e05010 72%, transparent 100%
+  );
+  filter: blur(0.6px);
+  animation: flame-flicker 2.6s ease-in-out infinite;
+}
+.candle-flame-outer {
+  background: radial-gradient(ellipse at 50% 80%,
+    rgba(255,200,80,0.6) 0%, rgba(255,140,20,0.3) 40%, transparent 70%
+  );
+  filter: blur(3px);
+  animation: flame-flicker 2.6s ease-in-out infinite 0.15s;
+}
+.candle-glow-halo {
+  background: radial-gradient(ellipse at 50% 50%,
+    rgba(240,150,30,0.28) 0%,
+    rgba(200,100,15,0.14) 35%,
+    rgba(160,70,10,0.06) 60%,
+    transparent 75%
+  );
+  animation: glow-breathe 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SMOKE REVEAL PARTICLES
+   mix-blend-mode: screen makes smoke look luminous (candle-lit)
+   ═══════════════════════════════════════════════════════════════ */
+.smoke-wrap {
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+.smoke-puff {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(240,218,190,0.36) 0%,
+    rgba(210,190,165,0.22) 40%,
+    rgba(185,165,145,0.10) 65%,
+    transparent 75%
+  );
+  filter: blur(11px);
+}
+.smoke-puff-a { animation: smoke-a 2.4s ease-out forwards; }
+.smoke-puff-b { animation: smoke-b 2.2s ease-out forwards; }
+.smoke-puff-c { animation: smoke-c 2.6s ease-out forwards; }
+.smoke-puff-d { animation: smoke-d 2.0s ease-out forwards; }
+
+/* ═══════════════════════════════════════════════════════════════
+   CARD FLIP UTILITY
+   ═══════════════════════════════════════════════════════════════ */
+.card-scene {
+  perspective: 900px;
+}
+.card-flipper {
+  transform-style: preserve-3d;
+  transition: transform 0.72s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+.card-flipper.flipped {
+  transform: rotateY(180deg);
+}
+.card-face,
+.card-back {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.card-back {
+  /* front of flipper = back of physical card */
+}
+.card-face {
+  transform: rotateY(180deg);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FADE-IN FOR REVEALED CARD TEXT
+   ═══════════════════════════════════════════════════════════════ */
+.card-content-reveal {
+  animation: content-fade-in 0.7s ease-out both;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GENERAL ENTRANCE
+   ═══════════════════════════════════════════════════════════════ */
+.fade-up {
+  animation: fade-up-in 0.55s ease-out both;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   KEYFRAMES
+   ═══════════════════════════════════════════════════════════════ */
+@keyframes flame-flicker {
+  0%,100% { transform: scaleY(1) scaleX(1); opacity: 1; }
+  20%      { transform: scaleY(0.96) scaleX(1.04); opacity: 0.88; }
+  45%      { transform: scaleY(1.04) scaleX(0.97); opacity: 0.94; }
+  70%      { transform: scaleY(0.93) scaleX(1.03); opacity: 0.9; }
+}
+
+@keyframes glow-breathe {
+  0%,100% { opacity: 0.85; transform: scale(1); }
+  50%     { opacity: 1;    transform: scale(1.06); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+@keyframes fade-up-in {
+  0%   { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes content-fade-in {
+  0%   { opacity: 0; transform: translateY(6px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Four smoke trajectory variants — different drift directions */
+@keyframes smoke-a {
+  0%   { opacity:0; transform: scale(0.35) translate(0,0) rotate(0deg); filter:blur(8px); }
+  18%  { opacity:0.75; }
+  60%  { opacity:0.38; transform: scale(1.8) translate(-18px,-65px) rotate(38deg); filter:blur(15px); }
+  100% { opacity:0; transform: scale(2.8) translate(-35px,-115px) rotate(62deg); filter:blur(22px); }
+}
+@keyframes smoke-b {
+  0%   { opacity:0; transform: scale(0.3) translate(0,0) rotate(0deg); filter:blur(7px); }
+  15%  { opacity:0.65; }
+  55%  { opacity:0.3; transform: scale(1.6) translate(22px,-55px) rotate(-28deg); filter:blur(14px); }
+  100% { opacity:0; transform: scale(2.5) translate(42px,-100px) rotate(-48deg); filter:blur(20px); }
+}
+@keyframes smoke-c {
+  0%   { opacity:0; transform: scale(0.45) translate(0,0) rotate(0deg); filter:blur(10px); }
+  22%  { opacity:0.7; }
+  65%  { opacity:0.35; transform: scale(2.0) translate(6px,-72px) rotate(18deg); filter:blur(17px); }
+  100% { opacity:0; transform: scale(3.2) translate(12px,-125px) rotate(30deg); filter:blur(24px); }
+}
+@keyframes smoke-d {
+  0%   { opacity:0; transform: scale(0.28) translate(0,0) rotate(0deg); filter:blur(6px); }
+  16%  { opacity:0.58; }
+  58%  { opacity:0.28; transform: scale(1.5) translate(-28px,-48px) rotate(-45deg); filter:blur(13px); }
+  100% { opacity:0; transform: scale(2.3) translate(-52px,-90px) rotate(-65deg); filter:blur(19px); }
+}
